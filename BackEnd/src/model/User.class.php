@@ -75,6 +75,7 @@ class User extends Model {
          ':user_firstname' => $json->USER_FIRSTNAME,
          ':user_lastname' => $json->USER_LASTNAME,
          ':user_role' => $json->USER_ROLE,
+         ':adress_ip' => $json->ADRESS_IP
       );
       $stm = parent::exec('USER_REGISTER',$values);
       

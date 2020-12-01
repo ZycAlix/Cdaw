@@ -1,22 +1,34 @@
 <template>
     <div>
         <div class="login-wrap" v-show="showLogin">
-            <h3>登录</h3>
+            <h3>Login</h3>
             <p v-show="showTishi">{{tishi}}</p>
             <input type="text" placeholder="Enter login" v-model="username">
             <input type="password" placeholder="Enter password" v-model="password">
-            <button v-on:click="login">登录</button>
-            <!-- <span v-on:click="ToRegister">没有账号？马上注册</span> -->
+            <button v-on:click="login">Login</button>
+            <span v-on:click="ToRegister">No account? Register at once!</span>
         </div>
 
-        <!-- <div class="register-wrap" v-show="showRegister">
-            <h3>注册</h3>
+        <div class="register-wrap" v-show="showRegister">
+            <h3>Register</h3>
             <p v-show="showTishi">{{tishi}}</p>
-            <input type="text" placeholder="请输入用户名" v-model="newUsername">
-            <input type="password" placeholder="请输入密码" v-model="newPassword">
-            <button v-on:click="register">注册</button>
-            <span v-on:click="ToLogin">已有账号？马上登录</span>
-        </div> -->
+            <input type="text" placeholder="Enter login" v-model="newUsername">
+            <input type="password" placeholder="Enter password" v-model="newPassword">
+            <input type="text" placeholder="Firstname" v-model="newFirstname">
+            <input type="text" placeholder="Lastname" v-model="newLastname">
+            <!-- <input type="checkbox" v-model="role" class="checkbox" value="0"/>Normal ACCOUNT?
+            <input type="checkbox" v-model="role" class="checkbox" value="1"/>SUPPER ACCOUNT? -->
+
+            <div class="radioadmin">
+            <input type='radio' id="user" value='0' v-model='role'/>
+            <label for='user'>Normal ACCOUNT</label>
+            <input type='radio' id="admin" value='1' v-model='role'/>
+            <label for='admin'>SUPPER ACCOUNT</label>
+            </div>
+
+            <button v-on:click="register">Registe</button>
+            <span v-on:click="ToLogin">Already have an account? Login at once!</span>
+        </div>
     </div>
 </template>
 
@@ -28,7 +40,6 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
     export default{
         mounted(){
             if(getCookie('username')){
-                console.log("#################################################")
                 this.$router.push('/home')
             }
         },
@@ -40,10 +51,10 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 }else{
 
                     let data = {'login':this.username,'password':this.password}
-                  data = JSON.stringify(data);
-                        axios.post('http://localhost:8888/projet-cdaw/BackEnd/tp-mvc/api.php/login',data).then((res)=>{
+                    data = JSON.stringify(data);
+                        axios.post('http://localhost/projet-cdaw/BackEnd/tp-mvc/api.php/Login',data).then((res)=>{
                         console.log(res); 
-                        this.tishi = "登录成功";
+                        this.tishi = "Login success";
                         this.showTishi = true; 
                         setCookie('username',this.username,1000*60);
                         setTimeout(function(){
@@ -53,21 +64,49 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                             console.log(error.response.status);
                             that.tishi = error.response.status + ":" + error.response.data;
                             that.showTishi = true;
-
-                    //接口的传值是(-1,该用户不存在),(0,密码错误)，同时还会检测管理员账号的值
-                        // if(res.data == -1){
-                        //     this.tishi = "该用户不存在";
-                        //     this.showTishi = true;
-                        // }else if(res.data == 0){
-                        //     this.tishi = "密码输入错误";
-                        //     this.showTishi = true;
-                        // }else{
-
-
-                        // } 
                         })
                 }
-            }
+            },
+            ToRegister(){
+                this.showRegister = true
+                this.showLogin = false
+            },  
+            ToLogin(){
+                this.showRegister = false
+                this.showLogin = true
+            },
+            register(){
+                if(this.newUsername == "" || this.newPassword == ""){
+                    alert("Please enter your login and password")
+                }else{
+                    let data = {'USER_LOGIN':this.newUsername,'USER_PASSWORD':this.newPassword,'USER_FIRSTNAME':this.newFirstname,'USER_LASTNAME':this.newLastname,'USER_ROLE':this.role,}
+                    data = JSON.stringify(data);
+                    axios.post('http://localhost/projet-cdaw/BackEnd/tp-mvc/api.php/Register',data).then((res)=>{
+                        console.log(res)
+                        this.tishi = "Register success";
+                        this.showTishi = true; 
+                        }).catch(function (error){
+
+                            console.log(error.response.status);
+                            that.tishi = error.response.status + ":" + error.response.data;
+                            that.showTishi = true;
+                        })
+
+            //             if(res.data == "ok"){
+            //                 this.tishi = "注册成功"
+            //                 this.showTishi = true
+            //                 this.username = ''
+            //                 this.password = ''
+  
+            //     setTimeout(function(){
+            //         this.showRegister = false
+            //         this.showLogin = true
+            //         this.showTishi = false
+            //     }.bind(this),1000)
+            // }
+                }
+    
+}
         },
         data(){
             return{
@@ -77,8 +116,13 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 tishi: '',
                 username: '',
                 password: '',
+
                 newUsername: '',
-                newPassword: ''
+                newPassword: '',
+                newFirstname:'',
+                newLastname:'',
+                role:''
+
             }
         }
 
@@ -91,4 +135,5 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
     button{display:block; width:250px; height:50px; line-height: 40px; margin:0 auto; border:none; background-color:#41b883; color:#fff; font-size:16px; margin-bottom:5px;}
     span{cursor:pointer;}
     span:hover{color:#41b883;}
+ 
 </style>

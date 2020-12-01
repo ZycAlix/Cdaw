@@ -42,4 +42,5 @@ User::addSqlQuery('USER_REGISTER',
     USER_PASSWORD = :user_password,
     USER_FIRSTNAME = :user_firstname,
     USER_LASTNAME = :user_lastname,
-    USER_ROLE = :user_role');
+    USER_ROLE = :user_role,
+    ADRESS_IP = :adress_ip');
