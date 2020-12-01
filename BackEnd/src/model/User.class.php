@@ -71,14 +71,14 @@ class User extends Model {
    public static function tryRegister($json){
       $values = array(
          ':user_login' => $json->USER_LOGIN,
-         ':user_password' => password_hash($json->USER_PASSWORD, PASSWORD_BCRYPT),
+         ':user_password' => $json->USER_PASSWORD, 
          ':user_firstname' => $json->USER_FIRSTNAME,
          ':user_lastname' => $json->USER_LASTNAME,
          ':user_role' => $json->USER_ROLE,
          ':adress_ip' => $json->ADRESS_IP
       );
       $stm = parent::exec('USER_REGISTER',$values);
-      
+
    }
    public function id(){
       return $this->ID_UTILISATEUR;

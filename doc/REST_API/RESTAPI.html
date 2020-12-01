@@ -22,150 +22,128 @@
 			 	<hr>
 		 	</span>
 		 	<span>
-			 	<h2>Get Utilisateurs<h2>
+			 	<h2>Get Users<h2>
 				<h3>Method: GET</h3>
 			 	<h3>Get informations of all users from API.</h3>
 			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/users</h4>
-			 	<hr>
+			 	
 			</span>
+			<span>
+				<h2>Response example<h2>
+				<h3>A example of getting all users' information.</h3>
+				<h4>[<br>
+					&nbsp&nbsp{<br>
+					&nbsp&nbsp  "ID_UTILISATEUR": "1",<br>
+					&nbsp&nbsp  "USER_LOGIN": "hongyan.wu@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "$2y$10$leEr3y3lMlMOOEjhnlfLCuvFwQYRYx5it/TFZuuUBuazAWTDPWeme",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Hongyan",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "WU",<br>
+					&nbsp&nbsp  "USER_ROLE": "0",<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_JOUE": 56,<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_GAGNE": 22,<br>
+					&nbsp&nbsp  "STATUT": "ONLINE",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.1"<br>
+					&nbsp},<br>
+					&nbsp{<br>
+					&nbsp&nbsp  "ID_UTILISATEUR": "2",<br>
+					&nbsp&nbsp  "USER_LOGIN": "wechen.tao@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "$2y$10$3Pyz6KID8CfRv0ZXjFL47.JCWtmd4U6mnsXiAtyKPd.D21wfk/xQ.",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Weichen",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "TAO",<br>
+					&nbsp&nbsp  "USER_ROLE": "0",<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_JOUE": 19,<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_GAGNE": 3,<br>
+					&nbsp&nbsp  "STATUT": "OFFLINE",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.2"<br>
+					 &nbsp  }<br>
+					]<br>			
+			   </h4>
+				<hr>
+		   </span>
 		 	<span>
 			 	<h2>Get a Single User<h2>
 				<h3>Method: GET</h3>
 			 	<h3>Get informations of the user whose id is 1.</h3>
 			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/user/1</h4>
-			 	<hr>
+			 	
 			</span>
+			<span>
+				<h2>Response example<h2>
+				<h3>A example of getting all users'information.</h3>
+				<h4>[<br>
+					&nbsp&nbsp{<br>
+					&nbsp&nbsp  "ID_UTILISATEUR": "1",<br>
+					&nbsp&nbsp  "USER_LOGIN": "hongyan.wu@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "$2y$10$leEr3y3lMlMOOEjhnlfLCuvFwQYRYx5it/TFZuuUBuazAWTDPWeme",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Hongyan",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "WU",<br>
+					&nbsp&nbsp  "USER_ROLE": "0",<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_JOUE": 56,<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_GAGNE": 22,<br>
+					&nbsp&nbsp  "STATUT": "ONLINE",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.1"<br>
+					&nbsp&nbsp}<br>	
+					]<br>		
+			   </h4>
+				<hr>
+		   </span>
 			<span>
 			 	<h2>Create a User<h2>
-				
+				<h3>Method: POST</h3>
 			 	<h3>Create a user into table "Utilisateur".</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/create.php</h4>
-			 	<hr>
+			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/User</h4>	
 			</span>
 			<span>
-			 	<h2>Delete a User<h2>
-			 	<h3>Delete a user according to his id.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/delete.php</h4>
-			 	<hr>
-			</span>
-				<span>
-			 	<h2>Update a User<h2>
-			 	<h3>Update a user according to his id.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/update.php</h4>
-			 	<hr>
+				<h2>Send body exemple</h2> 
+				<h3>A example of sending body for creating a user.</h3>
+				<h4>
+					{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "password",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Yuchen",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "ZHONG",<br>
+					&nbsp&nbsp  "USER_ROLE": "1",<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_JOUE": 0,<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_GAGNE": 0,<br>
+					&nbsp&nbsp  "STATUT": "ONLINE",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.9"<br>
+					}<br>							
+			   </h4>
+				<hr>
+		   </span>
+			<span>
+				<h2>Update a User<h2>
+				<h3>Method: POST</h3>
+				<h3>Update the user whose id is 1.</h3>
+				<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/User/1</h4>
 			</span>
 			<span>
-			 	<h2>Get all types of foods<h2>
-			 	<h3>Get informations of all types from API.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/typeAli/read.php</h4>
-			 	<hr>
+				<h2>Send body exemple</h2> 
+				<h3>A example of sending body.</h3>
+				<h4>
+					{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "password",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Yuchen",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "ZHONG",<br>
+					&nbsp&nbsp  "USER_ROLE": "1",<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_JOUE": 0,<br>
+					&nbsp&nbsp  "NOMBRE_PARTIE_GAGNE": 0,<br>
+					&nbsp&nbsp  "STATUT": "ONLINE",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.9"<br>
+					}<br>							
+			</h4>
+				<hr>
 			</span>
+	
 			<span>
-			 	<h2>Get foods<h2>
-			 	<h3>Get informations of all foods from API.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/read.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Get a single food<h2>
-			 	<h3>Get informations of a single food according to its id</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/readone.php?id_aliment=1</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Create a food<h2>
-			 	<h3>Create a food into table imm_aliment.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/create.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Update a food<h2>
-			 	<h3>Update a food according to his id.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/update.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Delete a food<h2>
-			 	<h3>Delete a food according to his id.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/delete.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Get journals<h2>
-			 	<h3>Create a journal.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/journal/create.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Create a journal<h2>
-			 	<h3>Create a journal into table imm_journal.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/journal/read.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Get composers<h2>
-			 	<h3>Get informations about the composition of the journals.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/read.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Create a composer<h2>
-			 	<h3>Create a composition of journal into table imm_composer.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/create.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Get a single composer<h2>
-			 	<h3>Get a single composition of journal according to the id of the food and the id of the journal</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/readone.php?id_aliment=1&id_journal=1</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Delete a composer<h2>
-			 	<h3>Delete a composition according to the id of the food and the id of the journal.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/delete.php?id_aliment=1&id_journal=1</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Update a composer<h2>
-			 	<h3>Update a composition according to the id of the food and the id of the journal.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/update.php?id_aliment=1&id_journal=1</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Get all<h2>
-			 	<h3>Get all informationsa about the database.</h3>
-			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/table/read.php</h4>
-			 	<hr>
-			</span>
-			<span>
-			 	<h2>Response example<h2>
-			 	<h3>A example of getting all users'information.</h3>
-			 	<h4>{<br>
-					 &nbsp "data": [<br>
-					    &nbsp&nbsp{<br>
-					    &nbsp&nbsp  "id_user": 1,<br>
-					    &nbsp&nbsp  "login": "Hongyan",<br>
-					    &nbsp&nbsp  "password": "Hongyan",<br>
-					    &nbsp&nbsp  "age": "-40",<br>
-					    &nbsp&nbsp  "niveau_sportif": bas,<br>
-					    &nbsp&nbsp  "sex": female<br>
-					    &nbsp},<br>
-					    &nbsp{<br>
-					    &nbsp&nbsp  "id_user": 2,<br>
-					    &nbsp&nbsp  "login": "Dudu",<br>
-					    &nbsp&nbsp  "password": "Dudu",<br>
-					    &nbsp&nbsp  "age": "40-60",<br>
-					    &nbsp&nbsp  "niveau_sportif": moyen,<br>
-					    &nbsp&nbsp  "sex": male<br>
-					  &nbsp  }<br>
-					 &nbsp ]<br>
-					&nbsp}<br>
-				</h4>
-			 	<hr>
+				<h2>Delete a User<h2>
+				<h3>Method: DELETE</h3>
+				<h3>Delete the user whose id is 1.</h3>
+				<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/user/1</h4>
+				<hr>
 			</span>
 		
-
 		 </div>
 	</body>
 </html>

@@ -23,9 +23,6 @@ class LoginController extends Controller {
       }
 
       $user = User::tryLogin($json->login);
-
-
-    
       
       if(empty($user) || !hash_equals($json->password,$user->password())) {
             $r = new Response(422,"wrong credentials");
@@ -43,8 +40,7 @@ class LoginController extends Controller {
          "exp" => $expiration_time,
          "iss" => JWT_ISSUER,
          "data" => array(
-            "id" => $user->id(),
-            "email" => $user->email()
+            "id" => $user->id()
          )
       );
 

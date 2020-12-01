@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 /*引入公共方法*/
 import {getCookie,delCookie } from '../assets/js/cookie.js'
     export default{

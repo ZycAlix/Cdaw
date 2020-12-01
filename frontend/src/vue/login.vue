@@ -16,8 +16,6 @@
             <input type="password" placeholder="Enter password" v-model="newPassword">
             <input type="text" placeholder="Firstname" v-model="newFirstname">
             <input type="text" placeholder="Lastname" v-model="newLastname">
-            <!-- <input type="checkbox" v-model="role" class="checkbox" value="0"/>Normal ACCOUNT?
-            <input type="checkbox" v-model="role" class="checkbox" value="1"/>SUPPER ACCOUNT? -->
 
             <div class="radioadmin">
             <input type='radio' id="user" value='0' v-model='role'/>
@@ -34,10 +32,14 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+const bcrypt = require('bcryptjs');
+
 import axios from 'axios';
 import {setCookie,getCookie} from '../assets/js/cookie.js'
 
     export default{
+ 
+
         mounted(){
             if(getCookie('username')){
                 this.$router.push('/home')
@@ -49,10 +51,12 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 if(this.username == "" || this.password == ""){
                     alert("Please enter your login and password")
                 }else{
-
-                    let data = {'login':this.username,'password':this.password}
+                let salt = "$2a$10$xYH3WyLse6mEctoaKl8Ihe";
+                
+                let hashPassword = bcrypt.hashSync(this.password, salt); // salt is inclued in generated hash 
+                    let data = {'login':this.username,'password':hashPassword}
                     data = JSON.stringify(data);
-                        axios.post('http://localhost/projet-cdaw/BackEnd/tp-mvc/api.php/Login',data).then((res)=>{
+                        axios.post('http://localhost/projet-cdaw/BackEnd/src/api.php/Login',data).then((res)=>{
                         console.log(res); 
                         this.tishi = "Login success";
                         this.showTishi = true; 
@@ -76,15 +80,29 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 this.showLogin = true
             },
             register(){
+
+
                 if(this.newUsername == "" || this.newPassword == ""){
                     alert("Please enter your login and password")
                 }else{
-                    let data = {'USER_LOGIN':this.newUsername,'USER_PASSWORD':this.newPassword,'USER_FIRSTNAME':this.newFirstname,'USER_LASTNAME':this.newLastname,'USER_ROLE':this.role,}
+                    let salt = "$2a$10$xYH3WyLse6mEctoaKl8Ihe";
+
+                    let hashPassword = bcrypt.hashSync(this.newPassword, salt);
+                    let data = {'USER_LOGIN':this.newUsername,'USER_PASSWORD':hashPassword,'USER_FIRSTNAME':this.newFirstname,'USER_LASTNAME':this.newLastname,'USER_ROLE':this.role,'ADRESS_IP':this.ip}
                     data = JSON.stringify(data);
-                    axios.post('http://localhost/projet-cdaw/BackEnd/tp-mvc/api.php/Register',data).then((res)=>{
+                    console.log(data)
+                    axios.post('http://localhost/projet-cdaw/BackEnd/src/api.php/Register',data).then((res)=>{
                         console.log(res)
                         this.tishi = "Register success";
                         this.showTishi = true; 
+                        this.username = ''
+                        this.password = ''
+  
+                        setTimeout(function(){
+                            this.showRegister = false
+                            this.showLogin = true
+                            this.showTishi = false
+                        }.bind(this),1000)
                         }).catch(function (error){
 
                             console.log(error.response.status);
@@ -92,18 +110,7 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                             that.showTishi = true;
                         })
 
-            //             if(res.data == "ok"){
-            //                 this.tishi = "注册成功"
-            //                 this.showTishi = true
-            //                 this.username = ''
-            //                 this.password = ''
-  
-            //     setTimeout(function(){
-            //         this.showRegister = false
-            //         this.showLogin = true
-            //         this.showTishi = false
-            //     }.bind(this),1000)
-            // }
+
                 }
     
 }
@@ -121,8 +128,8 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 newPassword: '',
                 newFirstname:'',
                 newLastname:'',
+                ip:returnCitySN["cip"],
                 role:''
-
             }
         }
 
