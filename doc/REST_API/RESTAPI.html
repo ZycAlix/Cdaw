@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+	<head>
+		<title>IMM API</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		 <div class="head">
+		 	 Projet CDAW Mah-jong API is published here!
+		 <div>
+
+		 <div class="content">
+		 	<br>
+		 	<h1> Mah-jong <br>API</h1>
+		 	<br>
+
+		 	<span>
+			 	<h2>Root Endpoint</h2>
+			 	<h3>The root endpoint should prefix all resources and is only accessible over HTTPS. </h3>
+			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php</h4>
+			 	<hr>
+		 	</span>
+		 	<span>
+			 	<h2>Get Utilisateurs<h2>
+				<h3>Method: GET</h3>
+			 	<h3>Get informations of all users from API.</h3>
+			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/users</h4>
+			 	<hr>
+			</span>
+		 	<span>
+			 	<h2>Get a Single User<h2>
+				<h3>Method: GET</h3>
+			 	<h3>Get informations of the user whose id is 1.</h3>
+			 	<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/user/1</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Create a User<h2>
+				
+			 	<h3>Create a user into table "Utilisateur".</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/create.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Delete a User<h2>
+			 	<h3>Delete a user according to his id.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/delete.php</h4>
+			 	<hr>
+			</span>
+				<span>
+			 	<h2>Update a User<h2>
+			 	<h3>Update a user according to his id.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/user/update.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get all types of foods<h2>
+			 	<h3>Get informations of all types from API.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/typeAli/read.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get foods<h2>
+			 	<h3>Get informations of all foods from API.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/read.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get a single food<h2>
+			 	<h3>Get informations of a single food according to its id</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/readone.php?id_aliment=1</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Create a food<h2>
+			 	<h3>Create a food into table imm_aliment.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/create.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Update a food<h2>
+			 	<h3>Update a food according to his id.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/update.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Delete a food<h2>
+			 	<h3>Delete a food according to his id.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/aliment/delete.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get journals<h2>
+			 	<h3>Create a journal.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/journal/create.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Create a journal<h2>
+			 	<h3>Create a journal into table imm_journal.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/journal/read.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get composers<h2>
+			 	<h3>Get informations about the composition of the journals.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/read.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Create a composer<h2>
+			 	<h3>Create a composition of journal into table imm_composer.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/create.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get a single composer<h2>
+			 	<h3>Get a single composition of journal according to the id of the food and the id of the journal</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/readone.php?id_aliment=1&id_journal=1</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Delete a composer<h2>
+			 	<h3>Delete a composition according to the id of the food and the id of the journal.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/delete.php?id_aliment=1&id_journal=1</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Update a composer<h2>
+			 	<h3>Update a composition according to the id of the food and the id of the journal.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/composer/update.php?id_aliment=1&id_journal=1</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Get all<h2>
+			 	<h3>Get all informationsa about the database.</h3>
+			 	<h4>http://eden.imt-lille-douai.fr/~hongyan.wu1/Projet/doc/table/read.php</h4>
+			 	<hr>
+			</span>
+			<span>
+			 	<h2>Response example<h2>
+			 	<h3>A example of getting all users'information.</h3>
+			 	<h4>{<br>
+					 &nbsp "data": [<br>
+					    &nbsp&nbsp{<br>
+					    &nbsp&nbsp  "id_user": 1,<br>
+					    &nbsp&nbsp  "login": "Hongyan",<br>
+					    &nbsp&nbsp  "password": "Hongyan",<br>
+					    &nbsp&nbsp  "age": "-40",<br>
+					    &nbsp&nbsp  "niveau_sportif": bas,<br>
+					    &nbsp&nbsp  "sex": female<br>
+					    &nbsp},<br>
+					    &nbsp{<br>
+					    &nbsp&nbsp  "id_user": 2,<br>
+					    &nbsp&nbsp  "login": "Dudu",<br>
+					    &nbsp&nbsp  "password": "Dudu",<br>
+					    &nbsp&nbsp  "age": "40-60",<br>
+					    &nbsp&nbsp  "niveau_sportif": moyen,<br>
+					    &nbsp&nbsp  "sex": male<br>
+					  &nbsp  }<br>
+					 &nbsp ]<br>
+					&nbsp}<br>
+				</h4>
+			 	<hr>
+			</span>
+		
+
+		 </div>
+	</body>
+</html>
