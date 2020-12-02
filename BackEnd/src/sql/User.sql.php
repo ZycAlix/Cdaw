@@ -1,7 +1,7 @@
 <?php
 
 User::addSqlQuery('USER_LIST',
-    'SELECT * FROM  Utilisateur ORDER BY USER_LOGIN');
+    'SELECT USER_LOGIN,ID_UTILISATEUR,USER_ROLE,ADRESS_IP FROM  Utilisateur ORDER BY USER_LOGIN');
 
 User::addSqlQuery('USER_BY_ID',
     'SELECT * FROM Utilisateur WHERE ID_UTILISATEUR = :id');

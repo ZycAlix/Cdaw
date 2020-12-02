@@ -144,6 +144,59 @@
 				<hr>
 			</span>
 		
+			<span>
+				<h2>Create a User<h2>
+			    <h3>Method: POST</h3>
+				<h3>Create a user into table "Utilisateur".</h3>
+				<h4>http://localhost:8888/projet-cdaw/BackEnd/src/api.php/User</h4>	
+				<hr>
+		   </span>
+		   <span>
+			   <h2>Login </h2> 
+			   <h3>Method: POST</h3>
+			   <h3>A example of sending body for login.</h3>
+			   <h4>
+				   {<br>
+				   &nbsp&nbsp  "login": "Hongyan",<br>
+				   &nbsp&nbsp  "password": "$2a$10$xYH3WyLse6mEctoaKl8IhepKbuoVEYj89SVieaF8Zwfvz5Y.Zfwcq"<br>
+				   }<br>							
+			  </h4>
+			  <h2>Response body</h2> 
+			  <h3>A example of Response body for login.</h3>
+			  <h4>
+				  {<br>
+				  &nbsp&nbsp   "jwt_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5MTMwNzUs<br>ImV4cCI6MTYwNjkxNjY3NSwiaXNzIjoibG9jYWxob3N0Ojg4ODgiLCJkYXRhIjp<br>7ImlkIjoiMjMifX0.u7TBcdxntBusSsLaRNnD4pfB8MV5eNrYRw0tLVgC8x0"<br>
+				  }<br>							
+			 </h4>
+			   <hr>
+		  </span>
+		  <span>
+			<h2>Register</h2> 
+			<h3>Method: POST</h3>
+			<h3>A example of sending body for Register.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr",<br>
+					&nbsp&nbsp  "USER_PASSWORD": "password",<br>
+					&nbsp&nbsp  "USER_FIRSTNAME": "Yuchen",<br>
+					&nbsp&nbsp  "USER_LASTNAME": "ZHONG",<br>
+					&nbsp&nbsp  "USER_ROLE": "1",<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.9"<br>	
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Block User By Login</h2> 
+			<h3>Method: PUT</h3>
+			<h3>A example of sending body for blocking a user.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr"<br>			
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
 		 </div>
 	</body>
 </html>
