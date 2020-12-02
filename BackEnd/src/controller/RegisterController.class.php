@@ -1,9 +1,4 @@
 <?php
-include_once __ROOT_DIR . '/libs/php-jwt/src/BeforeValidException.php';
-include_once __ROOT_DIR . '/libs/php-jwt/src/ExpiredException.php';
-include_once __ROOT_DIR . '/libs/php-jwt/src/SignatureInvalidException.php';
-include_once __ROOT_DIR . '/libs/php-jwt/src/JWT.php';
-use \Firebase\JWT\JWT;
 
 class RegisterController extends Controller {
 

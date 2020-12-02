@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends Controller {
+class RoomController extends Controller {
 
     public function __construct($name, $request) {
         parent::__construct($name, $request);
@@ -11,17 +11,17 @@ class UserController extends Controller {
     {
          switch ($this->request->getHttpMethod()) {
             case 'GET':
-                return $this->getUserInfos();
-                break;
+                //return $this->getUserInfos();
+                //break;
             case 'PUT':
-                return $this->updateUserInfos();
-                break;
+                //return $this->updateUserInfos();
+                //break;
             case 'POST':
-                return $this->addUser();
+                return $this->createRoom();
                 break;
             case 'DELETE':
-                return $this->deleteUser();
-                break;
+                //eturn $this->deleteUser();
+                //break;
 
         }
         return Response::errorResponse("unsupported parameters or method in users");
@@ -38,12 +38,12 @@ class UserController extends Controller {
         return Response::okResponse($jsonResult);
     }
  
-    protected function addUser(){
+    protected function createRoom(){
         $jsonRecieved = json_decode(file_get_contents("php://input"));
-        User::addUser($jsonRecieved);
+        Room::addRoom($jsonRecieved);
         $jsonResult = json_encode(
             array(
-                "message" => "User was added.",
+                "message" => "Room was created.",
             )
         );
         return Response::okResponse($jsonResult);

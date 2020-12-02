@@ -121,19 +121,19 @@ alter table Joueur
       on delete restrict;
 
 alter table Partie
-   add constraint FK_PARTIE_CR¨¦ER_UTILISAT foreign key (ID_UTILISATEUR)
+   add constraint FK_PARTIE_CREER_UTILISAT foreign key (ID_UTILISATEUR)
       references Utilisateur (ID_UTILISATEUR)
       on update restrict
       on delete restrict;
 
 alter table TuileDeLaPartie
-   add constraint FK_TUILEDEL_G¨¦N¨¦RER_PARTIE foreign key (ID_PARTIE)
+   add constraint FK_TUILEDEL_GENERER_PARTIE foreign key (ID_PARTIE)
       references Partie (ID_PARTIE)
       on update restrict
       on delete restrict;
 
 alter table TuileDeLaPartie
-   add constraint FK_TUILEDEL_R¨¦F¨¦RENCE_TUILE foreign key (ID_TUILE)
+   add constraint FK_TUILEDEL_REFERENCE_TUILE foreign key (ID_TUILE)
       references Tuile (ID_TUILE)
       on update restrict
       on delete restrict;

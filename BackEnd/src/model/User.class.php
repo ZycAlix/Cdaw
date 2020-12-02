@@ -78,8 +78,8 @@ class User extends Model {
          ':adress_ip' => $json->ADRESS_IP
       );
       $stm = parent::exec('USER_REGISTER',$values);
-
    }
+
    public function id(){
       return $this->ID_UTILISATEUR;
    }
@@ -88,9 +88,6 @@ class User extends Model {
       return $this->USER_PASSWORD;
    }
 
-   public function email(){
-      return $this->USER_EMAIL;
-   }
 }
 
 
