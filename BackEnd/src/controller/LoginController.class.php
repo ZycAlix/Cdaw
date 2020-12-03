@@ -26,8 +26,8 @@ class LoginController extends Controller {
       
       
       if(empty($user) || !hash_equals($json->password,$user->password())) {
-            $r = new Response(422,"wrong credentials");
-       $r->send();
+         $r = new Response(422,"wrong credentials");
+         $r->send();
             //$r->sendWithLog();
       }
       
@@ -49,11 +49,11 @@ class LoginController extends Controller {
       $jsonResult = json_encode(
             array(
                "jwt_token" => $jwt,
-               "data" => $user->USER_ROLE
+               "data" => $user->USER_ROLE,
+               "status" => $user->STATUT
             )
       );
-   
 
-        return Response::okResponse($jsonResult);
+      return Response::okResponse($jsonResult);
     }}
 }

@@ -4,9 +4,12 @@
     // of the directory that contains this file (index.php)
     // e.g. http://eden.imt-lille-douai.fr/~luc.fabresse/index.php => __ROOT_DIR = /home/luc.fabresse/public_html
     $rootDirectoryPath = realpath(dirname(__FILE__));
+
     define ('__ROOT_DIR', $rootDirectoryPath );
     header('Access-Control-Allow-Origin:*');//允许所有来源访问
-    header('Access-Control-Allow-Method:POST,GET');//允许访问的方式
+    header('Access-Control-Allow-Method:POST,GET,PUT,OPTIONS,DELETE');//允许访问的方式
+    Header('Access-Control-Allow-Headers:append,delete,entries,foreach,get,has,keys,set,values,Authorization');
+  
     // Load all application config
     require_once(__ROOT_DIR . "/config/config.php");
 

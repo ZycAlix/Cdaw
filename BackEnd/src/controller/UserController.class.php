@@ -30,51 +30,38 @@ class UserController extends Controller {
     protected function deleteUser(){
         $id =  $this->request->getUriParameters();
         User::deleteUser($id);
-        $jsonResult = json_encode(
-            array(
+        $res = array(
                 "message" => "User was deleted.",
-            )
         );
-        return Response::okResponse($jsonResult);
+        return $res;
     }
  
     protected function addUser(){
         $jsonRecieved = json_decode(file_get_contents("php://input"));
         User::addUser($jsonRecieved);
-        $jsonResult = json_encode(
-            array(
+        $res = array(
                 "message" => "User was added.",
-            )
-        );
-        return Response::okResponse($jsonResult);
+            );
+        return $res;
     }
 
     protected function updateUserInfos(){
         $id =  $this->request->getUriParameters();
         $jsonRecieved = json_decode(file_get_contents("php://input"));
         User::updateUserInfoById($id,$jsonRecieved);
-        $jsonResult = json_encode(
-            array(
+        $res = array(
                 "message" => "User was updated.",
-            )
-        );
-        return Response::okResponse($jsonResult);
+            );
+        return $res;
         
     }
     protected function getUserInfos()
     {
-        $id =  $this->request->getUriParameters();
-        $userinfo = User::getUserById($id);
-        $jsonResult = json_encode($userinfo);
-        return Response::okResponse($jsonResult);
+        $login =  $this->request->getUriParameters();
+        $userinfo = User::getUserByLogin($login);
+        return $userinfo;
     }
 
-   
-    // public function getUserIdFromUri(){
-    //     $uriParameters = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    //     $uriSegments = explode('/', $uriParameters);
-    //     return end($uriSegments);
-    // }
 
 }
 

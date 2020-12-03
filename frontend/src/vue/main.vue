@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <table id="tb">
             <tr>   
@@ -10,7 +9,7 @@
                 <th>Option</th>
             </tr>
             <tr v-if="length == 0">
-                <td colspan="4">当前列表无数据</td>
+                <td colspan="4">No data of users</td>
             </tr>
 
             <tr v-for="item in lists" :key=item.ID_UTILISATEUR>
@@ -29,7 +28,8 @@
 <script>
 
 import $ from 'jquery' 
-import axios from 'axios';
+import {requestget} from '../netwrok/request.js'
+
     export default{
         data(){
             return{
@@ -39,23 +39,18 @@ import axios from 'axios';
         },
         mounted(){
            var that = this;
-            axios.get('http://localhost:8888/projet-cdaw/BackEnd/src/api.php/Users').then((res)=>{
-           
+            requestget({
+                url: '/Users'
+            },res=>{         
                that.lists = res.data
-               that.length = that.lists.length
-               
-
-            })  
-            
-             $('#tb').DataTable(that.lists);
-
+               that.length = that.lists.length 
+            })
+            $('#tb').DataTable(that.lists);
          },
-
     }
 </script>
 
 <style>
-
         #tb{
 
             width: 800px;

@@ -1,22 +1,17 @@
 <template>
     <div>
-    
-
         <table id="optiontalbe">
-            <tr><input class="inputAdminOp" type="text" v-model="ipbloquer"> <button class="buttonAdminOp" @click="bloquerIp">Bloquer l'adress email</button></tr>
-            <tr><input class="inputAdminOp" type="text" v-model="emailbloquer"> <button class="buttonAdminOp" @click="bloqueremail">Bloquer l'adress IP</button></tr>
+            <tr><input class="inputAdminOp" type="text" v-model="ipbloquer"> <button class="buttonAdminOp" @click="bloquerIp">Bloquer l'adress IP</button><button class="buttonAdminOp" @click="unbloquerIp">Unbloquer l'adress Ip</button></tr>
+            <tr><input class="inputAdminOp" type="text" v-model="emailbloquer"> <button class="buttonAdminOp" @click="bloqueremail">Bloquer l'adress Email</button><button class="buttonAdminOp" @click="unbloquerEmail">Unbloquer l'adress Email</button></tr>
             <tr><input class="inputAdminOp" type="text" v-model="userprom"> <button class="buttonAdminOp" @click="promouser" >Promouvoir cet utilisateur</button></tr>
-            <tr><input class="inputAdminOp" type="text" v-model="admindelete"> <button class="buttonAdminOp" @click="deleteadmin" >Supprimer l'administrateur</button></tr>
-            
+            <tr><input class="inputAdminOp" type="text" v-model="admindelete"> <button class="buttonAdminOp" @click="deleteadmin" >Supprimer l'administrateur</button></tr>    
         </table>
-            <router-link to="/administrateur/main"><button>Get all user</button></router-link>
-
-
-        
+            <router-link to="/administrateur/main"><button>Get all user</button></router-link>  
     </div>
 </template>
 <script>
-    import axios from 'axios'
+
+    import {requestput} from '../netwrok/request.js'
 export default {
 
    data() {
@@ -25,87 +20,123 @@ export default {
           emailbloquer:"",
           admindelete:"",
           userprom:""
-
-
       }
    },
    methods:{
-       bloquerIp(){
-
-                
-
-                if(this.ipbloquer == ""){
+        bloquerIp(){
+            if(this.ipbloquer == ""){
                 alert("Please enter the IP you want to block")
                 }else{
                     let data = {'ADRESS_IP':this.ipbloquer}
-                     data = JSON.stringify(data);
-                        axios.put('http://localhost/projet-cdaw/BackEnd/src/api.php/BlockIp',data).then((res)=>{
-                        
+                    data = JSON.stringify(data);
+                    requestput({
+                        url:'/BlockIp',
+                        data: data
+                    },res=>{
                         console.log(res); 
                         alert("User is blocked")
-
-                        }).catch(function (error){
-
-                            console.log(error.response.status);
-                            alert(error.response.status + ":" + error.response.data);
-  
-                        })
+                    },err=>{
+                        console.log(err.response.status);
+                        alert(err.response.status + ":" + err.response.data);
+                    })                        
                 }
        },
-       bloqueremail(){
 
+       bloqueremail(){
                 if(this.emailbloquer == ""){
                 alert("Please enter the user you want to block")
                 }else{
                     let data = {'USER_LOGIN':this.emailbloquer}
-                     data = JSON.stringify(data);
-                        axios.put('http://localhost/projet-cdaw/BackEnd/src/api.php/BlockUser',data).then((res)=>{
+                    data = JSON.stringify(data);
+                    requestput({
+                        url:'/BlockUser',
+                        data: data
+                    },res=>{
                         console.log(res); 
-                        alert("User is blocked")
-
-                        }).catch(function (error){
-                            console.log(error.response.status);
-                            alert(error.response.status + ":" + error.response.data);
-  
-                        })
+                        alert("User is blocked")                        
+                    },err=>{
+                        console.log(err.response.status);
+                        alert(err.response.status + ":" + err.response.data); 
+                    })
                 }
        }, 
-        promouser(){
 
+        promouser(){
                 if(this.userprom == ""){
                 alert("Please enter the user you want to promote")
                 }else{
                     let data = {'USER_LOGIN':this.userprom}
-                     data = JSON.stringify(data);
-                        axios.put('http://localhost/projet-cdaw/BackEnd/src/api.php/PromUser',data).then((res)=>{
+                    data = JSON.stringify(data);
+                    requestput({
+                        url:'/PromUser',
+                        data: data
+                    },res=>{
                         console.log(res); 
-                        alert("User is promoted")
-
-                        }).catch(function (error){
-                            console.log(error.response.status);
-                            alert(error.response.status + ":" + error.response.data);
-  
-                        })
+                        alert("User is promoted")                        
+                    },err=>{
+                        console.log(err.response.status);
+                        alert(err.response.status + ":" + err.response.data); 
+                    })
                 }
        },  
-        deleteadmin(){
 
+        deleteadmin(){
                 if(this.admindelete == ""){
                 alert("Please enter the administrateur you want to delete")
                 }else{
                     let data = {'USER_LOGIN':this.userprom}
                      data = JSON.stringify(data);
-                        axios.put('http://localhost/projet-cdaw/BackEnd/src/api.php/DeleteAdmin',data).then((res)=>{
+                    requestput({
+                        url:'/DeleteAdmin',
+                        data: data
+                    },res=>{
                         console.log(res); 
-                        alert("Admin is deleted")
-
-                        }).catch(function (error){
-                            console.log(error.response.status);
-                            alert(error.response.status + ":" + error.response.data);
-  
-                        })
+                        alert("User is deleted")                        
+                    },err=>{
+                        console.log(err.response.status);
+                        alert(err.response.status + ":" + err.response.data); 
+                    })
                 }
-       },  
+       }, 
+
+        unbloquerIp(){
+            if(this.ipbloquer == ""){
+                alert("Please enter the IP you want to unblock")
+            }else{
+                let data = {'ADRESS_IP':this.ipbloquer}
+                data = JSON.stringify(data);
+                requestput({
+                    // url:'/BlockIp',
+                    data: data
+                },res=>{
+                    console.log(res); 
+                    alert("User is unblocked")
+                },err=>{
+                    console.log(err.response.status);
+                    alert(err.response.status + ":" + err.response.data);
+                })                        
+            }
+        },
+
+        unbloquerEmail(){
+                if(this.emailbloquer == ""){
+                alert("Please enter the user you want to unblock")
+                }else{
+                    let data = {'USER_LOGIN':this.emailbloquer}
+                    data = JSON.stringify(data);
+                    requestput({
+                        // url:'/BlockUser',
+                        data: data
+                    },res=>{
+                        console.log(res); 
+                        alert("User is blocked")                        
+                    },err=>{
+                        console.log(err.response.status);
+                        alert(err.response.status + ":" + err.response.data); 
+                    })
+                }
+       }, 
+
        
 
    }
@@ -139,6 +170,6 @@ export default {
         color:#fff; 
         font-size:14px; 
         margin-bottom:10px;
-        }
+    }
 
 </style>

@@ -13,15 +13,14 @@ class User extends Model {
       return $stm->fetchAll();
    }
 
-   public static function getUserById($id){
+   public static function getUserByLogin($login){
 
-      $values = array(':id'=>$id);
-      $stm = parent::exec('USER_BY_ID',$values);
+      $values = array(':login'=>$login);
+      $stm = parent::exec('USER_BY_LOGIN',$values);
       return $stm->fetchAll();
    }
 
    public static function updateUserInfoById($id,$json){
-
       $values = array(
          ':user_login' => $json->USER_LOGIN,
          ':user_password' => password_hash($json->USER_PASSWORD, PASSWORD_BCRYPT),
@@ -35,7 +34,6 @@ class User extends Model {
          ':user_id' => $id,
       );
       $stm = parent::exec('UPDATE_BY_ID',$values);
-   
    }
 
    public static function addUser($json){

@@ -31,12 +31,27 @@ class Admin extends Model {
         $stm = parent::exec('BLOCK_BY_LOGIN',$values);
    }
 
+   public static function tryUnBlockUserByLogin($json){
+    $values = array(
+        ':user_login'=>$json->USER_LOGIN,
+    );
+    $stm = parent::exec('UNBLOCK_BY_LOGIN',$values);
+}
+
+
    public static function tryBlockUserByIp($json){
         $values = array(
             ':adress_ip'=>$json->ADRESS_IP,
         );
         $stm = parent::exec('BLOCK_BY_IP',$values);
     }
+
+   public static function tryUnBlockUserByIp($json){
+    $values = array(
+        ':adress_ip'=>$json->ADRESS_IP,
+    );
+    $stm = parent::exec('UNBLOCK_BY_IP',$values);
+}
 
     public static function tryPromUser($json){
         $values = array(

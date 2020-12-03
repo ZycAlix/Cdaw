@@ -8,6 +8,8 @@ class BlockIpController extends Controller {
     }
 
     public function processRequest() {
+        if($this->request->getHttpMethod() == 'OPTIONS')
+            return Response::okResponse('ok');
         if($this->request->getHttpMethod() !== 'PUT')
             return Response::errorResponse('{ "message" : "Unsupported endpoint" }' );
 
@@ -24,11 +26,9 @@ class BlockIpController extends Controller {
             $r->send();
         }
         Admin::tryBlockUserByIp($json);
-        $jsonResult = json_encode(
-            array(
+        $res = array(
                 "message" => "User was blocked.",
-            )
-        );
-        return Response::okResponse($jsonResult);
+            );
+        return $res;
     }
 }

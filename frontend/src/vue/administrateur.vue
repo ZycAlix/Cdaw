@@ -1,6 +1,4 @@
 <template>
-
-
     <div>
         <option-list></option-list>
     </div>

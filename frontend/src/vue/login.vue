@@ -19,9 +19,9 @@
 
             <div class="radioadmin">
             <input class="logininput" type='radio' id="user" value='0' v-model='role'/>
-            <label for='user'>Normal ACCOUNT</label>
+            <label for='user'>Normal account</label>
             <input class="logininput" type='radio' id="admin" value='1' v-model='role'/>
-            <label for='admin'>SUPPER ACCOUNT</label>
+            <label for='admin'>Super account</label>
             </div>
 
             <button  class="buttonlogin" v-on:click="register">Registe</button>
@@ -36,91 +36,105 @@ const bcrypt = require('bcryptjs');
 
 import axios from 'axios';
 import {setCookie,getCookie} from '../assets/js/cookie.js'
+import {requestpost} from '../netwrok/request'
+import {mapMutations} from 'vuex'
+
+
 
     export default{
- 
-
         mounted(){
             if(getCookie('username')){
-                this.$router.push('/home')
+                if(getCookie('userrole') == 0){
+                this.$router.push('/home')}
+                else{
+                this.$router.push('/administrateur')}
             }
         },
+        created(){
+            console.log(localStorage.getItem('Authorization'))
+        },
         methods:{
+            ...mapMutations(['changeLogin']),
             login(){
                 let that = this;
                 if(this.username == "" || this.password == ""){
                     alert("Please enter your login and password")
                 }else{
                 let salt = "$2a$10$xYH3WyLse6mEctoaKl8Ihe";
-                
                 let hashPassword = bcrypt.hashSync(this.password, salt); // salt is inclued in generated hash 
-                    let data = {'login':this.username,'password':hashPassword}
-                    data = JSON.stringify(data);
-                        axios.post('http://localhost:8888/projet-cdaw/BackEnd/src/api.php/Login',data).then((res)=>{
-                        console.log(res); 
-                        this.tishi = "Login success";
-                        this.showTishi = true; 
-                        setCookie('username',this.username,1000*60);
-                        setTimeout(function(){
-                            console.log(res.data.data+"1111111111111111")
-                            if(res.data.data == "0"){
-                                this.$router.push('/home');
-                                }
-                            else{
-                                this.$router.push('/administrateur');
-                                }
-                        }.bind(this),1000);}).catch(function (error){
-
-                            console.log(error.response.status);
-                            that.tishi = error.response.status + ":" + error.response.data;
+                let data = {'login':this.username,'password':hashPassword}    
+                data = JSON.stringify(data);
+                requestpost({
+                    url: '/Login',
+                    data: data
+                },res=>{
+                    console.log( res.data.jwt_token)
+                    that.tishi = "Login success";
+                    that.showTishi = true; 
+                    that.userToken = 'Bearer ' + res.data.jwt_token;
+                    that.changeLogin({ Authorization: that.userToken })
+                    setCookie('userrole',that.data,1000*60)
+                    setCookie('username',that.username,1000*60);
+                    setTimeout(function(){
+                        if(res.data == "0"){
+                            that.$router.push('/home');
+                            }
+                        else{
+                            that.$router.push('/administrateur');
+                            }
+                        }.bind(that),1000);    
+                    },err =>{
+                        console.log(err)
+                        if(err != null){
+                            console.log(err.response.status);
+                            that.tishi = err.response.status + ":" + err.response.data;
                             that.showTishi = true;
-                        })
-                }
+                        }
+                    }
+                )}  
             },
+
             ToRegister(){
                 this.showRegister = true
                 this.showLogin = false
             },  
+
             ToLogin(){
                 this.showRegister = false
                 this.showLogin = true
             },
+
             register(){
-
-
                 if(this.newUsername == "" || this.newPassword == ""){
                     alert("Please enter your login and password")
                 }else{
                     let salt = "$2a$10$xYH3WyLse6mEctoaKl8Ihe";
-
                     let hashPassword = bcrypt.hashSync(this.newPassword, salt);
                     let data = {'USER_LOGIN':this.newUsername,'USER_PASSWORD':hashPassword,'USER_FIRSTNAME':this.newFirstname,'USER_LASTNAME':this.newLastname,'USER_ROLE':this.role,'ADRESS_IP':this.ip}
                     data = JSON.stringify(data);
-                    console.log(data)
-                    axios.post('http://localhost:8888/projet-cdaw/BackEnd/src/api.php/Register',data).then((res)=>{
+                    requestpost({
+                        url:'/Register',
+                        data: data
+                    },res=>{
                         console.log(res)
                         this.tishi = "Register success";
                         this.showTishi = true; 
                         this.username = ''
                         this.password = ''
-  
                         setTimeout(function(){
                             this.showRegister = false
                             this.showLogin = true
                             this.showTishi = false
                         }.bind(this),1000)
-                        }).catch(function (error){
-
-                            console.log(error.response.status);
-                            that.tishi = error.response.status + ":" + error.response.data;
-                            that.showTishi = true;
-                        })
-
-
-                }
-    
-}
+                    },err=>{
+                        console.log(err.response.status);
+                        that.tishi = err.response.status + ":" + err.response.data;
+                        that.showTishi = true;
+                    })   
+                }    
+            }
         },
+
         data(){
             return{
                 showLogin: true,
@@ -129,6 +143,7 @@ import {setCookie,getCookie} from '../assets/js/cookie.js'
                 tishi: '',
                 username: '',
                 password: '',
+                userToken:'',
 
                 newUsername: '',
                 newPassword: '',

@@ -8,11 +8,12 @@ class BlockUserController extends Controller {
     }
 
     public function processRequest() {
+        if($this->request->getHttpMethod() == 'OPTIONS')
+            return Response::okResponse('ok');
         if($this->request->getHttpMethod() !== 'PUT')
             return Response::errorResponse('{ "message" : "Unsupported endpoint" }' );
 
         $json = $this->request->jsonContent();
-        
         
         if(!isset($json->USER_LOGIN)) {
             $r = new Response(422,"login fields is mandatory");
@@ -25,11 +26,9 @@ class BlockUserController extends Controller {
             $r->send();
         }
         Admin::tryBlockUserByLogin($json);
-        $jsonResult = json_encode(
-            array(
-                "message" => "User was blocked.",
-            )
+        $res = array(
+                "message" => "User was blocked."
         );
-        return Response::okResponse($jsonResult);
+        return $res;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+
 class RegisterController extends Controller {
 
    public function __construct($name, $request) {

@@ -23,10 +23,6 @@ class UsersController extends Controller {
     protected function getAllUsers()
     {
         $users = User::getList();
-        $response = new Response();
-        //echo var_dump($users);
-        //echo var_dump(json_encode($users));
-        $jsonResult= json_encode($users);
-        return Response::okResponse($jsonResult);
+        return $users;
     }
 }

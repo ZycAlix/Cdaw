@@ -27,7 +27,6 @@ class Response {
       return new Response(401,$message);
    }
 
-
    public static function notFoundResponse($message = "")
    {
       return new Response(404,$message);
@@ -53,7 +52,7 @@ class Response {
       header("Content-Type: application/json; charset=UTF-8");
 
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods
-      header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
+      header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");
 
       header("Access-Control-Max-Age: 3600"); // Maximum number of seconds the results can be cached.
 
