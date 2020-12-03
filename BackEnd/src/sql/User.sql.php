@@ -6,7 +6,7 @@ User::addSqlQuery('USER_LIST',
 User::addSqlQuery('USER_BY_ID',
     'SELECT * FROM Utilisateur WHERE ID_UTILISATEUR = :id');
 
-User::addSqlQuery('UPDATE_BY_ID',
+User::addSqlQuery('UPDATE_BY_LOGIN',
     'UPDATE Utilisateur SET USER_LOGIN = :user_login,
     USER_PASSWORD = :user_password,
     USER_FIRSTNAME = :user_firstname,
@@ -16,7 +16,7 @@ User::addSqlQuery('UPDATE_BY_ID',
     NOMBRE_PARTIE_GAGNE = :nombre_parite_gagne,
     STATUT = :statut,
     ADRESS_IP = :adress_ip
-    WHERE ID_UTILISATEUR = :user_id');
+    WHERE USER_LOGIN = :user_login');
 
 User::addSqlQuery('ADD_USER',
     'INSERT INTO Utilisateur SET USER_LOGIN = :user_login,

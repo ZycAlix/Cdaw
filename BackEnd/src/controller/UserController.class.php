@@ -46,9 +46,9 @@ class UserController extends Controller {
     }
 
     protected function updateUserInfos(){
-        $id =  $this->request->getUriParameters();
+        $login =  $this->request->getUriParameters();
         $jsonRecieved = json_decode(file_get_contents("php://input"));
-        User::updateUserInfoById($id,$jsonRecieved);
+        User::updateUserInfoByLogin($login,$jsonRecieved);
         $res = array(
                 "message" => "User was updated.",
             );

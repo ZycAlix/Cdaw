@@ -20,7 +20,7 @@ class User extends Model {
       return $stm->fetchAll();
    }
 
-   public static function updateUserInfoById($id,$json){
+   public static function updateUserInfoByLogin($login,$json){
       $values = array(
          ':user_login' => $json->USER_LOGIN,
          ':user_password' => password_hash($json->USER_PASSWORD, PASSWORD_BCRYPT),
@@ -31,9 +31,9 @@ class User extends Model {
          ':nombre_parite_gagne' => $json->NOMBRE_PARTIE_GAGNE,
          ':statut' => $json->STATUT,
          ':adress_ip' => $json->ADRESS_IP,
-         ':user_id' => $id,
+         ':user_login' => $login,
       );
-      $stm = parent::exec('UPDATE_BY_ID',$values);
+      $stm = parent::exec('UPDATE_BY_LOGIN',$values);
    }
 
    public static function addUser($json){
@@ -43,8 +43,8 @@ class User extends Model {
          ':user_firstname' => $json->USER_FIRSTNAME,
          ':user_lastname' => $json->USER_LASTNAME,
          ':user_role' => $json->USER_ROLE,
-         ':nombre_partie_joue' => $json->NOMBRE_PARTIE_JOUE,
-         ':nombre_parite_gagne' => $json->NOMBRE_PARTIE_GAGNE,
+         ':nombre_partie_joue' => "0",
+         ':nombre_parite_gagne' => "0",
          ':statut' => $json->STATUT,
          ':adress_ip' => $json->ADRESS_IP,
       );

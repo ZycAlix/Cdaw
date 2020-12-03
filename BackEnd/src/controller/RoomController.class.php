@@ -42,12 +42,11 @@ class RoomController extends Controller {
         $jsonRecieved = json_decode(file_get_contents("php://input"));
         //var_dump($jsonRecieved);
         Room::addRoom($jsonRecieved);
-        $jsonResult = json_encode(
-            array(
-                "message" => "Room was created.",
-            )
-        );
-        return Response::okResponse($jsonResult);
+
+        $res = array(
+                "id" => "blbl"
+            );
+        return $res;
     }
 
     protected function updateUserInfos(){
