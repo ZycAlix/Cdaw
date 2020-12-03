@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>IMM API</title>
+		<title>CDAW API</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
 	</head>
@@ -187,12 +187,67 @@
 			<hr>
 		   </span>
 		   <span>
-			<h2>Block User By Login</h2> 
+			<h2>Block user by login</h2> 
 			<h3>Method: PUT</h3>
-			<h3>A example of sending body for blocking a user.</h3>
+			<h3>A example of sending body for blocking a user by login.</h3>
 			<h4>
 				{<br>
 					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr"<br>			
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Unblock user by login</h2> 
+			<h3>Method: PUT</h3>
+			<h3>A example of sending body for unblocking a user by login.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr"<br>			
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Block user by adress Ip</h2> 
+			<h3>Method: PUT</h3>
+			<h3>A example of sending body for blocking a user by adress Ip.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.9"<br>			
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Unblock User by adress Ip</h2> 
+			<h3>Method: PUT</h3>
+			<h3>A example of sending body for unblocking a user by adress Ip.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "ADRESS_IP": "192.168.0.9"<br>			
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Promote user to Admin by login</h2> 
+			<h3>Method: PUT</h3>
+			<h3>A example of sending body for promoting a user by login.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr"<br>				
+				}<br>		
+			</h4>					
+			<hr>
+		   </span>
+		   <span>
+			<h2>Delete an admin by login</h2> 
+			<h3>Method: DELETE</h3>
+			<h3>A example of sending body for deleting a user by login.</h3>
+			<h4>
+				{<br>
+					&nbsp&nbsp  "USER_LOGIN": "yuchen.zhong@etu.imt-lille-douai.fr"<br>				
 				}<br>		
 			</h4>					
 			<hr>

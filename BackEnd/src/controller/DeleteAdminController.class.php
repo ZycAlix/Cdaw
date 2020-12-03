@@ -29,11 +29,9 @@ class DeleteAdminController extends Controller {
             $r = new Response(400,"This is not an admin");
             $r->send();
         }
-        $jsonResult = json_encode(
-            array(
+        $res = array(
                 "message" => "Admin was deleted.",
-            )
-        );
-        return Response::okResponse($jsonResult);
+            );
+        return $res;
     }
 }

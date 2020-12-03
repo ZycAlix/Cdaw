@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './myvue.vue'
 import router from './router/index.js'
+import store from '@/store'
 
 Vue.config.productionTip = false
 console.log("hhhhhhhhhhhhhhhhhhhhh");
@@ -10,6 +11,7 @@ console.log("hhhhhhhhhhhhhhhhhhhhh");
   new Vue({
     //el:'#app'
     router,
+    store,
     render: h => h(App)      
   }).$mount('#app')
 

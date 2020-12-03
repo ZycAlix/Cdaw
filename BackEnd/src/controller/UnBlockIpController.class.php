@@ -1,34 +1,33 @@
 <?php
 
 
-class PromUserController extends Controller {
+class UnBlockIpController extends Controller {
 
     public function __construct($name, $request) {
         parent::__construct($name, $request);
     }
 
     public function processRequest() {
-                if($this->request->getHttpMethod() == 'OPTIONS')
-            return Response::okResponse('ok');
         if($this->request->getHttpMethod() !== 'PUT')
             return Response::errorResponse('{ "message" : "Unsupported endpoint" }' );
 
         $json = $this->request->jsonContent();
 
-        if(!isset($json->USER_LOGIN)) {
-            $r = new Response(422,"Login field is mandatory");
+        if(!isset($json->ADRESS_IP)) {
+            $r = new Response(422,"adress ip field is mandatory");
             $r->send();
         }
-        $admin = Admin::tryFindAdminByLogin($json->USER_LOGIN);
+        $admin = Admin::tryFindAdminByIp($json->ADRESS_IP);
         
         if(empty($admin)) {
-            $r = new Response(404,"User not founded");
+            $r = new Response(404,"Admin not founded");
             $r->send();
         }
-        Admin::tryPromUser($json);
+        Admin::tryUnBlockUserByIp($json);
         $res = array(
-                "message" => "User was promoted.",
+                "message" => "User was unblocked."
             );
+        
         return $res;
     }
 }

@@ -1,4 +1,4 @@
-//set cookies
+//Set cookies
 export function setCookie(c_name, value, expire) {
     var date = new Date()
     date.setSeconds(date.getSeconds() + expire)
@@ -6,7 +6,7 @@ export function setCookie(c_name, value, expire) {
     console.log(document.cookie)
 }
 
-//get cookies
+//Get cookies
 export function getCookie(c_name) {
     if (document.cookie.length > 0) {
         let c_start = document.cookie.indexOf(c_name + "=")
@@ -20,7 +20,7 @@ export function getCookie(c_name) {
     return ""
 }
 
-/*删除cookie*/
+//Delete cookies
 export function delCookie(c_name) {
     setCookie(c_name, "", -1)
 }

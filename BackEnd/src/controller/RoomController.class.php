@@ -27,7 +27,7 @@ class RoomController extends Controller {
         return Response::errorResponse("unsupported parameters or method in users");
     }
 
-    protected function deleteUser(){
+    protected function deleteRoom(){
         $id =  $this->request->getUriParameters();
         User::deleteUser($id);
         $jsonResult = json_encode(
@@ -40,6 +40,7 @@ class RoomController extends Controller {
  
     protected function createRoom(){
         $jsonRecieved = json_decode(file_get_contents("php://input"));
+        //var_dump($jsonRecieved);
         Room::addRoom($jsonRecieved);
         $jsonResult = json_encode(
             array(
